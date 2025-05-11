@@ -29,7 +29,6 @@ app.use(cookieParser());
 /* เราจะแก้ไข code ที่อยู่ตรงกลาง */
 
 app.get('/', async (req, res) =>{
-    conn = getConnection()
     const [results] = await conn.query('select * from users');
     res.json({
       results
@@ -39,5 +38,6 @@ app.get('/', async (req, res) =>{
 // Listen
 app.listen(port, async () => {
   await initMySQL();
+  conn = getConnection()
   console.log("Server started at port 8000");
 });
